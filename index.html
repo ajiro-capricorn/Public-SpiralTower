@@ -339,7 +339,7 @@ div.hs .hs-body{padding-top:10px}
   </section>
 
   <div class="end-btns" id="endbar" hidden>
-    <a class="tbtn" id="btnShare" href="https://twitter.com/intent/tweet" target="_blank" rel="noopener">結果を共有</a>
+    <button class="tbtn" id="btnResult" type="button">結果を共有</button>
     <button class="tbtn" id="btnCredit" type="button">クレジット</button>
   </div>
  </div>
@@ -2638,14 +2638,16 @@ function doReset(){restart();started=false;closeModal();sfx.thud();showTitle();}
 
 function showEnding(){
   $('#ending').hidden=false;$('#endbar').hidden=false;
-  const share=$('#btnShare');const u=new URL('https://twitter.com/intent/tweet');
+  const u=new URL('https://x.com/intent/tweet');
   const game=/^https?:/.test(location.protocol)?location.href.split('#')[0]:'';
   if(ANNOUNCE_URL){
     u.searchParams.set('text',['螺旋塔からロボットを救い出した！',game,'#螺旋塔脱出 #WEB謎'].filter(Boolean).join('\n'));u.searchParams.set('url',ANNOUNCE_URL);}
   else{u.searchParams.set('text','螺旋塔からロボットを救い出した！');u.searchParams.set('hashtags','螺旋塔脱出,WEB謎');if(game)u.searchParams.set('url',game);}
-  share.href=u.toString();
+  resultUrl=u.toString();
   saveNow();
 }
+let resultUrl='';
+$('#btnResult').addEventListener('click',()=>{if(!resultUrl)return;const w=window.open(resultUrl,'_blank');if(w)w.opener=null;else location.href=resultUrl;});
 
 const ANY=()=>true;
 const HINTS=[
