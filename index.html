@@ -1231,7 +1231,7 @@ function bigLeaf(cx,cy){
 }
 item(5,{id:'gear',x:-76,y:-104,w:76,h:76,on:()=>S.cleared[0],draw:(ox,oy)=>{bigGear(ox-38,oy-66);bigLeaf(ox-38,oy-66);},
   click:()=>say('巨大な {haguruma}が 壁に 掛かっている。')});
-item(5,{id:'leaf',x:-56,y:-76,w:36,h:20,on:()=>S.cleared[0],click:()=>say(S.leaf?'{ha}が くるくると 巻かれている。<br>誰がどう見ても {hamaki} だ。':'{haguruma}の 真ん中に、大きな {ha}が 挟まっている。')});
+item(5,{id:'leaf',x:-56,y:-76,w:36,h:20,on:()=>S.cleared[0],click:()=>say(S.leaf?'葉が くるくると 巻かれている。<br>誰がどう見ても {hamaki} だ。':'{haguruma}の 真ん中に、大きな {ha}が 挟まっている。')});
 const KOSEN=[['xray','#d8d4ff'],['uv','#b79ae8'],['vis',null],['ir','#c2534e'],['micro','#8fb0c8']];
 const SPEC=['#9b5cff','#4b5cff','#5ca8ff','#5cd45c','#ffe45c','#ff9c3c','#ff4d4d'];
 const WIN2={x:-32,y:-110,w:64,h:30};
@@ -2012,7 +2012,7 @@ function inside(A,B){
 
 function already(){sfx.no();say('……もう そうなっている。');return false;}
 const EFFECTS={
-  'ha:まく':()=>{if(S.leaf)return already();S.leaf=true;sfx.magic();},
+  'ha:まく':()=>{if(S.leaf)return already();S.leaf=true;S.B=null;sfx.magic();},
   'senkou:まく':()=>{if(S.coil)return already();S.coil=true;sfx.magic();},
   'niji:まく':()=>{if(S.rainbow)return already();S.rainbow=true;sfx.magic();},
   'hari:まく':()=>{if(S.needle)return already();S.needle=true;sfx.magic();},
